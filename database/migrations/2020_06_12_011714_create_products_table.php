@@ -19,9 +19,9 @@ class CreateProductsTable extends Migration
             $table->string('title', 128)->unique();
             $table->string('slug', 128)->unique();
             $table->longText('description');
-            $table->tinyInteger('stock_id')->default(1);
+            $table->tinyInteger('in_stock')->default(1);
             $table->decimal('price', 8,2);
-            $table->decimal('price', 8,2)->nullable();
+            $table->decimal('sales_price', 8,2)->nullable();
             $table->tinyInteger('active')->default(1);
             $table->timestamps();
         });
