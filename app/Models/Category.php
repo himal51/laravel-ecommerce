@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Product;
+use App\Models\Category;
 
 class Category extends Model
 {
@@ -15,19 +16,37 @@ class Category extends Model
     protected $guarded = [];
 
 
-    public function parent_category(){
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($category) {
+            $category->slug = str_slug($category->name);
+        });
+    }
+
+
+    public function parent_category()
+    {
         //return $this->belongsTo(Category::class);
-        return $this->belongsTo(__CLASS__);
+        return $this->belongsTo(Category::class);
     }
 
 
-    public function child_category(){
+    public function child_category()
+    {
         //return $this->hasMany(Category::class);
-        return $this->hasMany(__CLASS__);
+        return $this->hasMany(Category::class);
     }
 
 
-    public function products(){ 
+    public function products()
+    {
         return $this->hasMany(Product::class);
     }
 }

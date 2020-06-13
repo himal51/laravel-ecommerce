@@ -11,7 +11,7 @@ class CreateCategoriesTable extends Migration
      *
      * @return void
      */
-    public function up():void
+    public function up(): void
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
@@ -19,7 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->string('slug', 128)->unique();
             $table->string('banner', 128);
             //$table->unsignedInteger('category_id')->default(0);
-            $table->foreignId('category_id')->references('id')->on('categories')->onDelete('cascade')->default(0);
+            $table->foreignId('category_id')->nullable()->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,7 +29,7 @@ class CreateCategoriesTable extends Migration
      *
      * @return void
      */
-    public function down():void
+    public function down(): void
     {
         Schema::dropIfExists('categories');
     }

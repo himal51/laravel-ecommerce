@@ -19,8 +19,8 @@ class CreateProductsTable extends Migration
             $table->string('slug', 128)->unique();
             $table->longText('description');
             $table->tinyInteger('in_stock')->default(1);
-            $table->decimal('price', 8,2);
-            $table->decimal('sales_price', 8,2)->nullable();
+            $table->decimal('price', 8, 2);
+            $table->decimal('sales_price', 8, 2)->nullable();
             $table->tinyInteger('active')->default(1);
             $table->unsignedInteger('category_id');
             //$table->foreignId('category_id')->references('id')->on('categories')->onDelete('cascade')->default(0);
